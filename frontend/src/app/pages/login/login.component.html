@@ -1,0 +1,52 @@
+<div class="login-container">
+  <nz-card title="用户登录" class="login-card">
+    <form nz-form>
+      <nz-form-item>
+        <nz-form-control>
+          <!-- Use nz-input-group instead of nzPrefix -->
+          <nz-input-group [nzPrefix]="userIcon">
+            <input 
+              type="text" 
+              nz-input 
+              [(ngModel)]="username" 
+              name="username"
+              placeholder="请输入用户名">
+          </nz-input-group>
+          <ng-template #userIcon>
+            <span nz-icon nzType="user"></span>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+      
+      <nz-form-item>
+        <nz-form-control>
+          <!-- Use nz-input-group instead of nzPrefix -->
+          <nz-input-group [nzPrefix]="lockIcon">
+            <input 
+              type="password" 
+              nz-input 
+              [(ngModel)]="password" 
+              name="password"
+              placeholder="请输入密码">
+          </nz-input-group>
+          <ng-template #lockIcon>
+            <span nz-icon nzType="lock"></span>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+      
+      <nz-form-item>
+        <nz-form-control>
+          <button 
+            nz-button 
+            nzType="primary" 
+            class="login-button"
+            (click)="handleLogin()"
+            [nzLoading]="loading">
+            登录
+          </button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </nz-card>
+</div>

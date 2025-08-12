@@ -1,0 +1,52 @@
+<div class="order-detail-container">
+  <nz-spin [nzSpinning]="loading">
+    <nz-card [nzTitle]="'订单详情 - ' + (order?.orderNumber || '')">
+      <!-- 使用*ngIf确保order存在后再渲染 -->
+      <div *ngIf="order" class="order-info">
+        <div class="info-row">
+          <span class="info-label">订单ID:</span>
+          <span class="info-value">{{ order!.id }}</span> <!-- 非空断言 -->
+        </div>
+        
+        <div class="info-row">
+          <span class="info-label">金额:</span>
+          <span class="info-value">¥{{ order!.amount.toFixed(2) }}</span> <!-- 非空断言 -->
+        </div>
+        
+        <div class="info-row">
+          <span class="info-label">创建时间:</span>
+          <span class="info-value">{{ order!.creationDate | date:'yyyy-MM-dd HH:mm:ss' }}</span> <!-- 非空断言 -->
+        </div>
+        
+        <div class="info-row">
+          <span class="info-label">用户:</span>
+          <span class="info-value">{{ order!.user.username }} (ID: {{ order!.user.id }})</span> <!-- 非空断言 -->
+        </div>
+        
+        <div class="info-row">
+          <span class="info-label">状态:</span>
+          <span class="info-value">
+            <nz-tag [nzColor]="getStatusTagColor(order!.status)"> <!-- 非空断言 -->
+              {{ getStatusText(order!.status) }} <!-- 非空断言 -->
+            </nz-tag>
+          </span>
+        </div>
+        
+        <!-- 按钮区域保持不变 -->
+        <div class="action-buttons">
+          <button *ngIf="canPay()" nz-button nzType="primary" (click)="handlePay()" [nzLoading]="isProcessing">
+            支付订单
+          </button>
+          
+          <button *ngIf="canCancel()" nz-button nzType="default" nzDanger (click)="handleCancel()" [nzLoading]="isProcessing">
+            取消订单
+          </button>
+          
+          <button nz-button nzType="default" [routerLink]="['/order-list']">
+            返回列表
+          </button>
+        </div>
+      </div>
+    </nz-card>
+  </nz-spin>
+</div>

@@ -1,0 +1,31 @@
+.order-detail-container {
+  padding: 24px;
+  background-color: #fff;
+  min-height: 100vh;
+}
+
+.order-info {
+  margin-top: 16px;
+}
+
+.info-row {
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.info-label {
+  width: 120px;
+  font-weight: bold;
+  color: #666;
+}
+
+.info-value {
+  flex: 1;
+}
+
+.action-buttons {
+  margin-top: 24px;
+  display: flex;
+  gap: 12px;
+}

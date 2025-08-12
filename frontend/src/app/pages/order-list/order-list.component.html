@@ -1,0 +1,40 @@
+<div class="order-list-container">
+  <h2>订单列表</h2>
+  <nz-divider></nz-divider>
+  
+  <nz-spin [nzSpinning]="loading">
+    <nz-table 
+      #basicTable 
+      [nzData]="orders"
+      nzBordered>
+      <thead>
+        <tr>
+          <th>订单编号</th>
+          <th>金额</th>
+          <th>创建时间</th>
+          <th>用户</th>
+          <th>状态</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of basicTable.data">
+          <td>{{ order.orderNumber }}</td>
+          <td>¥{{ order.amount.toFixed(2) }}</td>
+          <td>{{ order.creationDate | date:'yyyy-MM-dd HH:mm' }}</td>
+          <td>{{ order.user.username }}</td>
+          <td>
+            <nz-tag [nzColor]="getStatusTagColor(order.status)">
+              {{ getStatusText(order.status) }}
+            </nz-tag>
+          </td>
+          <td>
+            <a [routerLink]="['/order-detail', order.id]">
+              <button nz-button nzSize="small" nzType="primary">详情</button>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </nz-spin>
+</div>
