@@ -13,7 +13,7 @@ COPY frontend/ ./
 RUN pnpm run build
 
 # --- 阶段 2: 构建 Spring Boot 后端 ---
-FROM maven:3.9.6-openjdk-21 AS backend-builder
+FROM maven:3.9.6-eclipse-temurin-21 AS backend-builder
 WORKDIR /app
 # 缓存 Maven 依赖
 COPY backend/pom.xml .
